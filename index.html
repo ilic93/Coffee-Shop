@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Coffee Shop</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://use.fontawesome.com/2af8e9f41e.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      function toggleNavbar() {
+        const x = document.querySelector(".navtabs");
+        if (x.className === "navtabs") {
+          x.className += " responsive";
+        } else {
+          x.className = "navtabs";
+        }
+      }
+      function updateNavbar() {
+        const navbar = document.querySelector('.navigation-bar')
+        if(window.scrollY > 0) {
+          navbar.style.background = 'rgba(0, 0, 0, 1)'
+        } else {
+          navbar.style.background = 'rgba(0, 0, 0, 0)'
+        }
+      }
+        
+      function checkImages() {
+        const aboutUsImgs = document.querySelectorAll('#about-us img')
+        aboutUsImgs.forEach(img => {
+          const x = window.innerHeight + window.scrollY
+          const y = img.offsetTop + img.offsetHeight
+      
+          const isHalfShown = x > img.offsetTop + img.offsetHeight / 2
+          const isNotScrolledPast = window.scrollY < y
+      
+          if(isHalfShown && isNotScrolledPast) {
+            img.style.transform = 'translateX(0)'
+            img.style.opacity = '1'
+            } else {
+            img.style.opacity = '0'
+            img.style.transform = img.classList.contains('left') ? 'translateX(-100%)' : 'translateX(100%)'
+          }
+        })
+      }
+
+      window.addEventListener('scroll', updateNavbar)
+      window.addEventListener('scroll', checkImages)
+
+      $(document).ready(function(){
+        $(window).resize(function() {
+          if($(window).width() <= 767) {
+            $('.navtabs').css('transition', '0s')
+          }
+        })
+        
+        $('.icon').click(function(){
+          $('.navtabs').css('transition','1s')
+        })
+      }); 
+
+    </script>
+  </head>
+  <body>
+
+    <nav class="navigation-bar">
+        <a href="#"><img class="logo" src="assets/logo.png"></a>
+        <div class="navtabs">
+          <a href="#">Home</a>
+          <a href="#about-us">About Us</a>
+          <a href="#offer">Offer</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Get in Touch</a>
+        </div>
+        <button class="icon" onclick="toggleNavbar()">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+    </nav>
+
+    <div class="header">
+        <div class="header-text">
+            <h1>The Coffee Shop</h1>
+            <p>Enjoy our tasty coffee</p>
+            <button>Book a table</button>
+        </div>
+    </div>
+
+    <div id="about-us">
+        <div>
+          <img class="left" src="assets/about_us_1.jpg" alt="about-us-img1">
+        </div>
+        <div class="about-us-main">
+          <h2>Come and Try</h2>
+          <p>Do you like coffee and seek to try different types? We are a team of dedicated coffee fans who provide 
+            our guests with the unique opportunity to taste coffee drinks of the highest quality. Come to our place 
+            and enjoy your favourite drink.</p>
+        </div>
+        <div>
+          <img class="right" src="assets/about_us_2.jpg" alt="about-us-img2">
+        </div>
+    </div>
+
+    <div id="offer">
+        <h2>What We Offer</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet repellendus temporibus ratione, maiores neque ipsam tempore iste. 
+          Commodi, vero esse. Rem quia quasi mollitia corrupti cumque soluta nobis provident minus?
+        </p>
+        <hr>
+        <div>
+          <i class="fa fa-coffee"></i>
+          <h3>Coffee</h3>
+          <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam sunt odit repellat accusamus, fugit voluptas similique numquam nihil 
+              praesentium perferendis quibusdam dolore voluptate. Consectetur exercitationem odit nam laboriosam. Ut, ipsam!
+          </p>
+        </div>
+        <div>
+          <i class="fa fa-glass"></i>
+          <h3>Other drinks</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cupiditate quod unde asperiores tempore. Labore vel autem est, repellat 
+            voluptatem nulla eum sapiente amet culpa provident iusto laborum pariatur rerum.
+          </p>
+        </div>
+        <div>
+          <i class="fa fa-birthday-cake"></i>
+          <h3>Cakes</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero nemo aliquid quia blanditiis deleniti animi dolorum asperiores veniam consectetur 
+            voluptatem quaerat tempore atque ipsam distinctio, nam ea, suscipit reiciendis accusamus?
+          </p>
+        </div>
+    </div>
+
+    <div id="gallery">
+        <h2>Gallery</h2>
+        <div class="col-xs-6 col-sm-3">
+          <img src="assets/gallery1.jpg" alt="Black coffee pic">
+        </div>
+        <div class="col-xs-6 col-sm-3">
+          <img src="assets/gallery2.jpg" alt="Espresso pic">
+        </div>
+        <div class="col-xs-6 col-sm-3">
+          <img src="assets/gallery3.jpg" alt="Cappuccino pic">
+        </div>
+        <div class="col-xs-6 col-sm-3">
+          <img src="assets/gallery4.jpg" alt="Mocha pic">
+        </div>
+        <div class="col-xs-6 col-sm-3">
+          <img src="assets/gallery5.jpg" alt="Tea pic">
+        </div>
+        <div class="col-xs-6 col-sm-3">
+          <img src="assets/gallery6.jpg" alt="Coffee with meal pic 1">
+        </div>
+        <div class="col-xs-6 col-sm-3">
+          <img src="assets/gallery7.jpg" alt="Coffee with meal pic 2">
+        </div>
+        <div class="col-xs-6 col-sm-3">
+          <img src="assets/gallery8.jpg" alt="Coffee with meal pic 3">
+        </div>
+    </div>
+
+    <div id="contact">
+        <div>
+          <h3>Location</h3>
+          <p>Lorem ipsum dolor</p>
+          <p>sit amet consectetur</p>
+          <p>adipisicing elit</p>
+        </div>
+        <div>
+          <h3>Hours</h3>
+          <p>Fri, Sat</p>
+          <p>09:00 am - 01:00 am</p> 
+          <br>
+          <p>Sun, Mon, Tue, Wed, Thur</p>
+          <p>09:00 am - 11:00 pm</p> <br>
+        </div>
+        <div>
+          <h3>Find us on...</h3>
+          <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+          <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+          <br>
+          <h3>Contact us</h3>
+          <p>(111) 111-111</p>
+          <p><a href="mailto:info@caffeshop.com">info@caffeeshop.com</a></p>
+        </div>
+    </div>
+
+  </body>
+</html>
